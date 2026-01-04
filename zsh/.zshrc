@@ -37,7 +37,9 @@ eval "$(starship init zsh)"
 
 # pmy
 export PMY_TRIGGER_KEY='^I'
-eval "$(pmy init)"
+if command -v pmy >/dev/null 2>&1; then
+  eval "$(pmy init)"
+fi
 
 # fzf
 export FZF_DEFAULT_OPTS='--height 40% --tmux bottom --layout reverse --border top'
