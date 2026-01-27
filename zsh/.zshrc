@@ -31,6 +31,7 @@ alias gs='git status'
 alias gc='git checkout'
 alias gcm='git commit -m'
 alias ga='git add .'
+alias no-sleep='caffeinate -dimsu'
 
 # Starship
 eval "$(starship init zsh)"
@@ -83,4 +84,11 @@ zinit light-mode for \
 
 autoload -Uz compinit && compinit
 
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 #### END OF VERSIONED CONFIG
+
