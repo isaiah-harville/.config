@@ -28,24 +28,30 @@ install_linux_packages() {
 
   run_as_root apt-get install -y "${cli_packages[@]}" || warn "Failed to install CLI packages"
 
-  if is_graphical_session; then
-    local gui_packages=(
-      i3
-      i3status
-      i3lock
-      dmenu
-      dunst
-      network-manager-gnome
-      picom
-      feh
-      rofi
-      xterm
-    )
-
-    run_as_root apt-get install -y "${gui_packages[@]}" || warn "Failed to install GUI packages"
-  else
-    log "No graphical session detected; skipping i3-related packages"
+  if ! flag_enabled "${DOTFILES_INSTALL_UBUNTU_GUI:-0}"; then
+    log "Skipping Ubuntu GUI packages (set DOTFILES_INSTALL_UBUNTU_GUI=1 to enable)"
+    return
   fi
+
+  if ! is_graphical_session; then
+    log "DOTFILES_INSTALL_UBUNTU_GUI=1 set, but no graphical session detected; skipping GUI packages"
+    return
+  fi
+
+  local gui_packages=(
+    i3
+    i3status
+    i3lock
+    dmenu
+    dunst
+    network-manager-gnome
+    picom
+    feh
+    rofi
+    xterm
+  )
+
+  run_as_root apt-get install -y "${gui_packages[@]}" || warn "Failed to install GUI packages"
 }
 
 log "Running Linux setup"

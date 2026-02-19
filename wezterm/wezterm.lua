@@ -15,7 +15,7 @@ config = {
     background = {
         {
             source = {
-                File = wezterm.home_dir .. "/.config/wezterm/wezterm.bg",
+                File = wezterm.home_dir .. "/.config/wezterm/wezterm.",
             },
             hsb = {
                 hue = 1.0,
@@ -35,4 +35,3 @@ config = {
 }
 
 return config
-

@@ -16,6 +16,17 @@ have_cmd() {
   command -v "$1" >/dev/null 2>&1
 }
 
+flag_enabled() {
+  case "${1:-0}" in
+    1|true|TRUE|True|yes|YES|on|ON|y|Y)
+      return 0
+      ;;
+    *)
+      return 1
+      ;;
+  esac
+}
+
 run_as_root() {
   if [ "$(id -u)" -eq 0 ]; then
     "$@"
