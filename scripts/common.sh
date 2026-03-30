@@ -190,7 +190,7 @@ install_shared_tools() {
   install_starship
   ensure_starship_in_shell
   install_zinit
-  install_pmy
+  # install_pmy
 }
 
 is_ubuntu() {
