@@ -1,0 +1,190 @@
+{
+    "remote.autoForwardPortsSource": "hybrid",
+    "workbench.startupEditor": "newUntitledFile",
+    "editor.fontLigatures": null,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "extensions.ignoreRecommendations": false,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb",
+        "*.gif": "gifPlayer.player"
+    },
+    "security.workspace.trust.untrustedFiles": "open",
+    "diffEditor.renderSideBySide": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnType": true,
+        "editor.formatOnSave": false,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit",
+            "source.fixAll": "never"
+        }
+    },
+    "editor.inlineSuggest.enabled": true,
+    "Lua.telemetry.enable": true,
+    "editor.accessibilitySupport": "off",
+    "git.openRepositoryInParentFolders": "never",
+    "git.enableSmartCommit": true,
+    "editor.minimap.enabled": false,
+    "github.copilot.advanced": {},
+    "dvc.doNotRecommendRedHatExtension": true,
+    "editor.cursorBlinking": "solid",
+    "editor.fontFamily": "'JetBrains Mono', 'SF Mono', 'Courier New', monospace",
+    "workbench.editor.empty.hint": "hidden",
+    "vim.overrideCopy": true,
+    "files.autoSave": "onFocusChange",
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "github.copilot.editor.enableAutoCompletions": true,
+    "vim.cursorStylePerMode.normal": "block",
+    "vim.cursorStylePerMode.visual": "block",
+    "vim.replaceWithRegister": true,
+    "draw.folder.structure.exclude": [
+        "*cache*",
+        "node_modules",
+        ".pnpm-store",
+        ".vscode",
+        "**.git",
+        "dist",
+        ".next",
+        ".pyi",
+        ".sample",
+        "build"
+    ],
+    "workbench.tree.enableStickyScroll": false,
+    "explorer.autoReveal": false,
+    "dvc.doNotShowCliUnavailable": true,
+    "indenticator.inner.showHover": false,
+    "editor.renderWhitespace": "all",
+    "terminal.integrated.gpuAcceleration": "on",
+    "editor.fontSize": 13,
+    "files.eol": "\n",
+    "files.trimFinalNewlines": true,
+    "dvc.doNotShowSetupAfterInstall": true,
+    "git.closeDiffOnOperation": true,
+    "vim.statusBarColorControl": true,
+    "vim.statusBarColors.insert": "#e23bff",
+    "vim.statusBarColors.normal": "#0078d4",
+    "vim.statusBarColors.visual": "#a3b8ef",
+    "vim.statusBarColors.visualline": "#a3b8ef",
+    "vim.statusBarColors.searchinprogressmode": "#3fbf88",
+    "git.confirmSync": false,
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "C_Cpp.intelliSenseEngineFallback": "enabled",
+    "vim.useSystemClipboard": true,
+    "terminal.external.osxExec": "WezTerm.app",
+    "files.trimTrailingWhitespace": true,
+    "terminal.integrated.ignoreBracketedPasteMode": true,
+    "notebook.lineNumbers": "on",
+    "remote.SSH.maxReconnectionAttempts": 1,
+    "markdown-preview-enhanced.markdownFileExtensions": [
+        ".md",
+        ".markdown",
+        ".mdown",
+        ".mkdn",
+        ".mkd",
+        ".rmd",
+        ".qmd",
+        ".mdx"
+    ],
+    "git.ignoreRebaseWarning": true,
+    "svelte.enable-ts-plugin": true,
+    "continue.showInlineTip": false,
+    "update.showReleaseNotes": false,
+    "yaml.schemas": {
+        "file:///Users/iharville/.vscode/extensions/continue.continue-1.2.11-darwin-arm64/config-yaml-schema.json": [
+            ".continue/**/*.yaml"
+        ],
+        "file:///Users/iharville/.vscode/extensions/continue.continue-1.2.14-darwin-arm64/config-yaml-schema.json": [
+            ".continue/**/*.yaml"
+        ]
+    },
+    // "workbench.colorCustomizations": {
+    //     "statusBar.background": "#a3b8ef",
+    //     "statusBar.noFolderBackground": "#a3b8ef",
+    //     "statusBar.debuggingBackground": "#a3b8ef",
+    //     "statusBar.foreground": "#ffffff",
+    //     "statusBar.debuggingForeground": "#ffffff",
+    //     "activityBar.background": "#1e1e2e",
+    //     "titleBar.activeBackground": "#24283a",
+    //     "titleBar.inactiveBackground": "#1e1e2e",
+    //     "tab.activeBackground": "#24283a",
+    //     "tab.inactiveBackground": "#1e1e2e",
+    //     "editor.background": "#1e1e2e",
+    //     "terminal.background": "#1e1e2e",
+    //     "sideBar.background": "#1e1e2e",
+    //     "editorGutter.background": "#24283a",
+    //     "terminal.border": "#24283a",
+    //     "terminal.tab.activeBorder": "#4b5068",
+    //     "tab.activeBorder": "#cfcf24",
+    //     "panel.background": "#24283a",
+    //     "editor.selectionHighlightBorder": "#FFFF00",
+    //     "notificationCenterHeader.background": "#24283a",
+    //     "notificationToast.background": "#1e1e2e",
+    //     "quickInput.background": "#24283a"
+    // },
+    // "window.autoDetectHighContrast": false,
+    // "workbench.settings.applyToAllProfiles": [
+    //     "workbench.colorTheme"
+    // ],
+    "window.autoDetectColorScheme": true,
+    "editor.wordSegmenterLocales": null,
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "editor.autoIndentOnPaste": true,
+    "[dockercompose]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.autoIndent": "advanced",
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": false,
+            "strings": true
+        },
+    },
+    "git.autofetch": true,
+    "security.allowedUNCHosts": [
+        "wsl.localhost"
+    ],
+    "continue.enableTabAutocomplete": true,
+    "workbench.iconTheme": "vscode-icons",
+    "vsicons.dontShowNewVersionMessage": true,
+    "chat.mcp.gallery.enabled": true,
+    "git.blame.editorDecoration.enabled": true,
+    "workbench.editor.enablePreview": false,
+    "dev.containers.experimentalLockfile": true,
+    "chat.tools.urls.autoApprove": {
+        "https://docs.astral.sh": {
+            "approveRequest": false,
+            "approveResponse": true
+        }
+    },
+    "python.terminal.activateEnvironment": false,
+    "continue.remoteConfigServerUrl": "webui.tools.local",
+    "terminal.integrated.initialHint": false,
+    "window.confirmSaveUntitledWorkspace": false,
+    "remote.SSH.connectTimeout": 1800,
+    "ruff.format.backend": "uv",
+    "ruff.configurationPreference": "filesystemFirst",
+    "chat.tools.terminal.terminalProfile.osx": {},
+    "terminal.integrated.defaultProfile.osx": "tmux",
+    "claudeCode.selectedModel": "default",
+    "claudeCode.preferredLocation": "panel",
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.pytest_cache": true,
+        "**/.ruff_cache": true,
+        "**/.uv-cache": true
+    },
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#0078d4",
+        "statusBar.noFolderBackground": "#0078d4",
+        "statusBar.debuggingBackground": "#0078d4"
+    },
+    "docker.extension.enableComposeLanguageServer": false,
+    "remote.SSH.remotePlatform": {
+        "ssh.harville.dev": "linux"
+    },
+    "workbench.preferredDarkColorTheme": "Winter is Coming (Dark Blue - No Italics)",
+}
