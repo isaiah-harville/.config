@@ -1,3 +1,7 @@
+export PATH="/usr/local/bin:$PATH"
+export EDITOR="nvim"
+export VISUAL="nvim"
+
 # Mac Specific
 export PATH="/opt/local/libexec/llvm-8.0/bin:$PATH" # LLVM
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"  # MacPorts
@@ -5,16 +9,14 @@ export PATH="$HOME/.local/bin:$HOME/Library/Python/3.11/bin:$PATH"  # Python idk
 export PATH="/Applications/Wireshark.app/Contents/MacOS:$PATH" # WireShark CLI
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.docker/bin:$PATH"
-export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/go/bin:$PATH"
 
-export EDITOR="nvim"
-export VISUAL="nvim"
+# fzf
+export FZF_DEFAULT_OPTS='--height 40% --tmux bottom --layout reverse --border top'
 
-# bun (lame)
+# bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-export NVM_DIR="$HOME/.nvm"
 
 # docker
 export DOCKER_BUILDKIT=1
@@ -22,8 +24,6 @@ export COMPOSE_DOCKER_CLI_BUILD=1
 
 # aliases
 alias cpf='copyfile'
-alias luamake="/Users/iharville/luamake/luamake" # mac specific
-alias gc='gnuradio-companion'
 alias gd='git diff .'
 alias gsd='git diff --staged .'
 alias gf='git fetch'
@@ -42,24 +42,18 @@ eval "$(starship init zsh)"
 #   eval "$(pmy init)"
 # fi
 
-# fzf
-export FZF_DEFAULT_OPTS='--height 40% --tmux bottom --layout reverse --border top'
-
-if [ -z "$SSH_AUTH_SOCK" ]; then
-   # Check for a currently running instance of the agent
-   RUNNING_AGENT="`ps -ax | grep 'ssh-agent -s' | grep -v grep | wc -l | tr -d '[:space:]'`"
-   if [ "$RUNNING_AGENT" = "0" ]; then
-        # Launch a new instance of the agent
-        ssh-agent -s &> $HOME/.ssh/ssh-agent
-   fi
-   eval `cat $HOME/.ssh/ssh-agent` > /dev/null
-   ssh-add 2> /dev/null
-fi
-
-# Tree
-tree() {
+# Helper functions
+tree() {  # run tree command with config
   local ignore=$(paste -d\| -s ~/.treeignore)
   command tree -I "$ignore" --prune "$@"
+}
+
+tmux-kill-detached() {  # kill all detached tmux sessions
+  tmux list-sessions -F '#{session_name} #{session_attached}' 2>/dev/null |
+    awk '$2 == 0 {print $1}' |
+    while read -r s; do
+      [ -n "$s" ] && tmux kill-session -t "$s"
+    done
 }
 
 # Zinit
@@ -70,7 +64,6 @@ source "${ZINIT_HOME}/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-# Load Plugins
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-syntax-highlighting
@@ -84,10 +77,19 @@ zinit light-mode for \
 
 autoload -Uz compinit && compinit
 
-
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# SSH agent stuff
+if [ -z "$SSH_AUTH_SOCK" ]; then
+   RUNNING_AGENT="`ps -ax | grep 'ssh-agent -s' | grep -v grep | wc -l | tr -d '[:space:]'`"
+   if [ "$RUNNING_AGENT" = "0" ]; then
+        ssh-agent -s &> $HOME/.ssh/ssh-agent
+   fi
+   eval `cat $HOME/.ssh/ssh-agent` > /dev/null
+   ssh-add 2> /dev/null
+fi
+
 
 #### END OF VERSIONED CONFIG
