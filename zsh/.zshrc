@@ -1,12 +1,9 @@
 export PATH="/usr/local/bin:$PATH"
 export EDITOR="nvim"
-export VISUAL="nvim"
+export VISUAL="$EDITOR"
 
 # Mac Specific
-export PATH="/opt/local/libexec/llvm-8.0/bin:$PATH" # LLVM
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"  # MacPorts
-export PATH="$HOME/.local/bin:$HOME/Library/Python/3.11/bin:$PATH"  # Python idky
-export PATH="/Applications/Wireshark.app/Contents/MacOS:$PATH" # WireShark CLI
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.docker/bin:$PATH"
 export PATH="/usr/local/go/bin:$PATH"
@@ -21,6 +18,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # docker
 export DOCKER_BUILDKIT=1
 export COMPOSE_DOCKER_CLI_BUILD=1
+export PATH="$HOME/.devcontainers/bin:$PATH"
 
 # aliases
 alias cpf='copyfile'
@@ -79,7 +77,7 @@ autoload -Uz compinit && compinit
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # SSH agent stuff
 if [ -z "$SSH_AUTH_SOCK" ]; then
