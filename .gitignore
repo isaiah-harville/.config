@@ -12,6 +12,7 @@
 !vscode
 !wezterm
 !zsh
+!zsh/**
 !starship.toml
 !setup.sh
 !i3

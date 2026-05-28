@@ -20,16 +20,8 @@ export DOCKER_BUILDKIT=1
 export COMPOSE_DOCKER_CLI_BUILD=1
 export PATH="$HOME/.devcontainers/bin:$PATH"
 
-# aliases
-alias cpf='copyfile'
-alias gd='git diff .'
-alias gsd='git diff --staged .'
-alias gf='git fetch'
-alias gs='git status'
-alias gc='git checkout'
-alias gcm='git commit -m'
-alias ga='git add .'
-alias no-sleep='caffeinate -dimsu'
+# Aliases
+[ -r "$HOME/.config/zsh/aliases.zsh" ] && source "$HOME/.config/zsh/aliases.zsh"
 
 # Starship
 eval "$(starship init zsh)"
@@ -91,3 +83,8 @@ fi
 
 
 #### END OF VERSIONED CONFIG
+### End of Zinit's installer chunk
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# bun completions
+[ -s "/Users/iharville/.bun/_bun" ] && source "/Users/iharville/.bun/_bun"
