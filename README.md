@@ -5,7 +5,7 @@ Opinionated configs for terminals, editors, and window managers across macOS and
 ## Quickstart (fresh machine)
 
 ```bash
-git clone git@github.com:IsaiahHarvi/.config.git ~/.config
+git clone git@github.com:isaiah-harville/.config.git ~/.config
 cd ~/.config
 ./setup.sh            # auto-detects macOS or Linux
 # DOTFILES_OS=linux ./setup.sh   # force a specific OS, useful in containers
@@ -14,7 +14,7 @@ cd ~/.config
 ## Quickstart (existing `~/.config` already populated)
 
 ```bash
-git clone git@github.com:IsaiahHarvi/.config.git ~/dotfiles
+git clone git@github.com:isaiah-harville/.config.git ~/dotfiles
 cd ~/dotfiles
 ./scripts/bootstrap-into-config.sh
 cd ~/.config
