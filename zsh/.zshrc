@@ -18,6 +18,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # docker
 export DOCKER_BUILDKIT=1
 export COMPOSE_DOCKER_CLI_BUILD=1
+export BUILDX_BAKE_ENTITLEMENTS_FS=0
 export PATH="$HOME/.devcontainers/bin:$PATH"
 
 # Aliases
