@@ -32,6 +32,14 @@ config = {
             opacity = 0.40
         },
     },
+    keys = {
+        -- Cmd+V: fast paste from system clipboard into tmux/terminal
+        {
+            key = 'v',
+            mods = 'CMD',
+            action = wezterm.action.PasteFrom 'Clipboard',
+        },
+    },
 }
 
 return config
