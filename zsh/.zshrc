@@ -82,5 +82,16 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
    ssh-add 2> /dev/null
 fi
 
+if [[ "$OSTYPE" == darwin* ]] && [ -d "$HOME/.ssh" ]; then
+  for key in "$HOME"/.ssh/*; do
+    [ -f "$key" ] || continue
+    case "$key" in
+      *.pub|*/config|*/known_hosts*|*/authorized_keys) continue ;;
+    esac
+    head -c 40 "$key" 2>/dev/null | grep -q "PRIVATE KEY" || continue
+    ssh-add --apple-use-keychain "$key" 2>/dev/null
+  done
+fi
+
 
 #### END OF VERSIONED CONFIG
