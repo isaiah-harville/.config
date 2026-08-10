@@ -84,8 +84,3 @@ fi
 
 
 #### END OF VERSIONED CONFIG
-### End of Zinit's installer chunk
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# bun completions
-[ -s "/Users/iharville/.bun/_bun" ] && source "/Users/iharville/.bun/_bun"
