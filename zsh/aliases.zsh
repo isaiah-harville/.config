@@ -1,7 +1,7 @@
 alias cpf='copyfile'
 alias gcm='git commit -m'
 alias no-sleep='caffeinate -dimsu'
-alias k='kubectl'
+alias k="kubectl"
 alias tf='terraform'
 alias sb='switchback'
 
