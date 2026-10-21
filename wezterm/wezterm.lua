@@ -32,7 +32,12 @@ config = {
             opacity = 0.40
         },
     },
+    -- Switchback (and other TUIs) can tell Ctrl+Tab, Shift+Enter, etc. apart
+    enable_kitty_keyboard = true,
     keys = {
+        -- Ctrl+Tab / Ctrl+Shift+Tab: let Switchback switch its own tabs
+        { key = 'Tab', mods = 'CTRL', action = wezterm.action.DisableDefaultAssignment },
+        { key = 'Tab', mods = 'CTRL|SHIFT', action = wezterm.action.DisableDefaultAssignment },
         -- Cmd+V: fast paste from system clipboard into tmux/terminal
         {
             key = 'v',
