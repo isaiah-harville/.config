@@ -1,8 +1,10 @@
 alias cpf='copyfile'
 alias gcm='git commit -m'
+alias gc='git checkout'
 alias no-sleep='caffeinate -dimsu'
 alias k="kubectl"
 alias tf='terraform'
+alias sb='switchback'
 
 auto-commit() {
   git add . && git commit -m "chore: automated commit $(date '+%Y-%m-%d %H:%M:%S')" && git push

@@ -1,0 +1,26 @@
+// ~/.config/zellij/layouts/opencode.kdl
+//
+// Startup layout: OpenCode on the left, a shell on the right.
+// `default_tab_template` wraps the content in zellij's tab-bar (top) and
+// status-bar (bottom); the tab's own split_direction="vertical" puts the two
+// content panes side by side.
+
+layout {
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+        pane size=1 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+
+    // Two panes side by side (split_direction="vertical" == left | right).
+    tab split_direction="vertical" {
+        pane {
+            command "opencode"
+        }
+        pane
+    }
+}

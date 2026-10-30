@@ -95,3 +95,7 @@ fi
 
 
 #### END OF VERSIONED CONFIG
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# bun completions
+[ -s "/Users/iharville/.bun/_bun" ] && source "/Users/iharville/.bun/_bun"

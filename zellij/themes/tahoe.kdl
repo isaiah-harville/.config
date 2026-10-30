@@ -1,0 +1,154 @@
+// ~/.config/zellij/themes/tahoe.kdl
+//
+// "Tahoe" — a cool blue theme meant to sit against the macOS blue Tahoe
+// wallpaper. No orange, no lime: accents stay in the cyan / teal / violet
+// range, chrome is deep blue so it blends with the desktop instead of
+// fighting it.
+//
+// Convention per component:
+//   base        -> foreground / border / line colour
+//   background  -> the fill behind that component
+//   emphasis_0..3 -> accent text colours used inside the component
+
+themes {
+    tahoe {
+        // Plain UI text (Ctrl/Alt hints, etc.) on the deep-blue desktop tone.
+        text_unselected {
+            base 150 178 205
+            background 18 42 70
+            emphasis_0 96 205 240     // cyan
+            emphasis_1 224 236 246    // soft white
+            emphasis_2 150 140 255    // violet
+            emphasis_3 80 210 200     // teal
+        }
+        // Selected / highlighted text: dark text on a lighter blue.
+        text_selected {
+            base 20 35 55
+            background 35 72 112
+            emphasis_0 240 248 255
+            emphasis_1 255 255 255
+            emphasis_2 180 172 255
+            emphasis_3 120 235 225
+        }
+
+        // Tabs and keybinding-mode ribbons (unselected): muted blue.
+        ribbon_unselected {
+            base 150 178 205
+            background 26 58 92
+            emphasis_0 96 205 240
+            emphasis_1 224 236 246
+            emphasis_2 150 140 255
+            emphasis_3 80 210 200
+        }
+        // The active tab / active mode: bright cyan so it clearly pops.
+        ribbon_selected {
+            base 18 42 70
+            background 120 220 255
+            emphasis_0 15 30 50
+            emphasis_1 15 30 50
+            emphasis_2 180 172 255
+            emphasis_3 15 30 50
+        }
+
+        // Table title line.
+        table_title {
+            base 120 190 230
+            background 26 58 92
+            emphasis_0 96 205 240
+            emphasis_1 224 236 246
+            emphasis_2 150 140 255
+            emphasis_3 80 210 200
+        }
+        table_cell_unselected {
+            base 200 215 230
+            background 18 42 70
+            emphasis_0 96 205 240
+            emphasis_1 224 236 246
+            emphasis_2 150 140 255
+            emphasis_3 80 210 200
+        }
+        table_cell_selected {
+            base 20 35 55
+            background 35 72 112
+            emphasis_0 240 248 255
+            emphasis_1 255 255 255
+            emphasis_2 180 172 255
+            emphasis_3 120 235 225
+        }
+
+        // List items.
+        list_unselected {
+            base 200 215 230
+            background 18 42 70
+            emphasis_0 96 205 240
+            emphasis_1 224 236 246
+            emphasis_2 150 140 255
+            emphasis_3 80 210 200
+        }
+        list_selected {
+            base 20 35 55
+            background 35 72 112
+            emphasis_0 240 248 255
+            emphasis_1 255 255 255
+            emphasis_2 180 172 255
+            emphasis_3 120 235 225
+        }
+
+        // Pane frames: non-focused stay quiet, focused glows cyan, and the
+        // frame shown while in a sub-mode (e.g. TMUX mode) goes violet.
+        frame_unselected {
+            base 70 110 160
+            background 16 36 60
+            emphasis_0 96 205 240
+            emphasis_1 224 236 246
+            emphasis_2 150 140 255
+            emphasis_3 80 210 200
+        }
+        frame_selected {
+            base 120 220 255
+            background 35 72 112
+            emphasis_0 15 30 50
+            emphasis_1 255 255 255
+            emphasis_2 180 172 255
+            emphasis_3 120 235 225
+        }
+        frame_highlight {
+            base 20 35 55
+            background 150 140 255
+            emphasis_0 240 248 255
+            emphasis_1 255 255 255
+            emphasis_2 15 30 50
+            emphasis_3 15 30 50
+        }
+
+        // Exit-code indicators: teal = success, soft red = error (never lime/orange).
+        exit_code_success {
+            base 110 231 200
+            background 18 42 70
+            emphasis_0 96 205 240
+            emphasis_1 224 236 246
+            emphasis_2 150 140 255
+            emphasis_3 80 210 200
+        }
+        exit_code_error {
+            base 255 122 150
+            background 18 42 70
+            emphasis_0 96 205 240
+            emphasis_1 224 236 246
+            emphasis_2 150 140 255
+            emphasis_3 80 210 200
+        }
+
+        // Colours handed to users who attach to a shared session.
+        multiplayer_user_colors {
+            player_1 120 220 255
+            player_2 150 140 255
+            player_3 80 210 200
+            player_4 255 122 150
+            player_5 96 205 240
+            player_6 180 172 255
+            player_7 224 236 246
+            player_8 110 150 195
+        }
+    }
+}

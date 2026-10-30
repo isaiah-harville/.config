@@ -1,0 +1,173 @@
+// ~/.config/zellij/config.kdl
+//
+// tmux-style configuration tuned for working with OpenCode on macOS.
+//
+// Leader key: Ctrl-b  (the tmux default prefix — matches ~/.tmux.conf)
+//
+//   Press Ctrl-b, release, then a command key:
+//     "        split below            %        split right
+//     hjkl / arrows   move focus between panes
+//     o        next pane             z        zoom focused pane fullscreen
+//     x        close focused pane    [        scroll mode (review OpenCode output)
+//     c        new tab               ,        rename tab
+//     n / p    next / previous tab   space    toggle tiled <-> floating layout
+//     d        detach (session keeps running)
+//     Ctrl-b   send a literal Ctrl-b to the app
+//     Alt-f    toggle a floating pane (e.g. a scratch shell over OpenCode)
+//     Ctrl-arrows   resize the focused pane
+//   Esc cancels the leader without doing anything.
+//
+// Every other Ctrl- chord (Ctrl-p/n/t/s/a/...) is left alone so it reaches
+// your shell and OpenCode instead of zellij.
+
+keybinds clear-defaults=true {
+    // -------------------------------------------------------------------------
+    // tmux mode — entered with the Ctrl-b leader
+    // -------------------------------------------------------------------------
+    tmux {
+        bind "left"  { MoveFocus "left";  SwitchToMode "normal"; }
+        bind "right" { MoveFocus "right"; SwitchToMode "normal"; }
+        bind "up"    { MoveFocus "up";    SwitchToMode "normal"; }
+        bind "down"  { MoveFocus "down";  SwitchToMode "normal"; }
+        bind "h" { MoveFocus "left";  SwitchToMode "normal"; }
+        bind "j" { MoveFocus "down";  SwitchToMode "normal"; }
+        bind "k" { MoveFocus "up";    SwitchToMode "normal"; }
+        bind "l" { MoveFocus "right"; SwitchToMode "normal"; }
+
+        bind "\"" { NewPane "down";  SwitchToMode "normal"; }   // split below
+        bind "%"  { NewPane "right"; SwitchToMode "normal"; }   // split right
+
+        bind "o" { FocusNextPane; SwitchToMode "normal"; }
+        bind "z" { ToggleFocusFullscreen; SwitchToMode "normal"; }
+        bind "x" { CloseFocus; SwitchToMode "normal"; }
+        bind "c" { NewTab; SwitchToMode "normal"; }
+        bind "n" { GoToNextTab; SwitchToMode "normal"; }
+        bind "p" { GoToPreviousTab; SwitchToMode "normal"; }
+        bind "," { SwitchToMode "renametab"; TabNameInput 0; }
+        bind "[" { SwitchToMode "scroll"; }
+        bind "space" { NextSwapLayout; SwitchToMode "normal"; }
+        bind "Alt f" { ToggleFloatingPanes; SwitchToMode "normal"; }
+        bind "Ctrl left"  { Resize "Increase left";  SwitchToMode "normal"; }
+        bind "Ctrl right" { Resize "Increase right"; SwitchToMode "normal"; }
+        bind "Ctrl up"    { Resize "Increase up";    SwitchToMode "normal"; }
+        bind "Ctrl down"  { Resize "Increase down";  SwitchToMode "normal"; }
+        bind "d" { Detach; }
+        bind "Ctrl b" { Write 2; SwitchToMode "normal"; }   // send literal Ctrl-b
+        bind "esc" { SwitchToMode "normal"; }               // cancel the leader
+    }
+
+    // -------------------------------------------------------------------------
+    // scroll mode — review a pane's scrollback (OpenCode reasoning, command output)
+    // -------------------------------------------------------------------------
+    scroll {
+        bind "s" { SwitchToMode "entersearch"; SearchInput 0; }
+        bind "c" { CopyLastCommandOutput; SwitchToMode "normal"; }
+        bind "e" { EditScrollback; SwitchToMode "normal"; }
+    }
+
+    search {
+        bind "c" { SearchToggleOption "CaseSensitivity"; }
+        bind "n" { Search "down"; }
+        bind "o" { SearchToggleOption "WholeWord"; }
+        bind "p" { Search "up"; }
+        bind "w" { SearchToggleOption "Wrap"; }
+    }
+
+    entersearch {
+        bind "Ctrl c" { SwitchToMode "scroll"; }
+        bind "esc"    { SwitchToMode "scroll"; }
+        bind "enter"  { SwitchToMode "search"; }
+    }
+
+    locked {
+        bind "Ctrl g" { SwitchToMode "normal"; }
+    }
+
+    renametab {
+        bind "esc" { UndoRenameTab; SwitchToMode "normal"; }
+    }
+    renamepane {
+        bind "esc" { UndoRenamePane; SwitchToMode "normal"; }
+    }
+    shared_among "renametab" "renamepane" {
+        bind "Ctrl c" { SwitchToMode "normal"; }
+    }
+
+    // Scroll / search navigation (line, page, half-page, prompt jumping).
+    shared_among "scroll" "search" {
+        bind "PageDown" { PageScrollDown; }
+        bind "PageUp"   { PageScrollUp; }
+        bind "left"  { PageScrollUp; }
+        bind "down"  { ScrollDown; }
+        bind "up"    { ScrollUp; }
+        bind "right" { PageScrollDown; }
+        bind "[" { ScrollToPreviousPrompt; }
+        bind "]" { ScrollToNextPrompt; }
+        bind "Ctrl b" { PageScrollUp; }
+        bind "Ctrl c" { ScrollToBottom; SwitchToMode "normal"; }
+        bind "d" { HalfPageScrollDown; }
+        bind "Ctrl f" { PageScrollDown; }
+        bind "h" { PageScrollUp; }
+        bind "j" { ScrollDown; }
+        bind "k" { ScrollUp; }
+        bind "l" { PageScrollDown; }
+        bind "Ctrl s" { SwitchToMode "normal"; }
+        bind "u" { HalfPageScrollUp; }
+    }
+
+    // Esc / Enter drop back to normal from any interactive mode — but never
+    // while typing a tab/pane name or a search needle.
+    shared_except "normal" "locked" "entersearch" "renametab" "renamepane" {
+        bind "esc" { SwitchToMode "normal"; }
+    }
+    shared_except "normal" "locked" "entersearch" "renametab" "renamepane" {
+        bind "enter" { SwitchToMode "normal"; }
+    }
+
+    // The Ctrl-b leader is only armed from normal mode, so it never shadows
+    // Ctrl-b inside scroll/search/typing modes.
+    shared_except "locked" "scroll" "search" "tmux" "entersearch" "renametab" "renamepane" {
+        bind "Ctrl b" { SwitchToMode "tmux"; }
+    }
+
+    // Resize + layout cycling via Alt: usable while typing and in tmux mode,
+    // but kept out of scroll/search so they keep their navigation keys.
+    shared_except "locked" "scroll" "search" {
+        bind "Alt left"  { Resize "Increase left"; }
+        bind "Alt right" { Resize "Increase right"; }
+        bind "Alt up"    { Resize "Increase up"; }
+        bind "Alt down"  { Resize "Increase down"; }
+        bind "Alt +" { Resize "Increase"; }
+        bind "Alt =" { Resize "Increase"; }
+        bind "Alt -" { Resize "Decrease"; }
+        bind "Alt [" { PreviousSwapLayout; }
+        bind "Alt ]" { NextSwapLayout; }
+    }
+
+    // Lock and quit are always available (except while locked).
+    shared_except "locked" {
+        bind "Ctrl g" { SwitchToMode "locked"; }
+        bind "Ctrl q" { Quit; }
+    }
+}
+
+// Built-in UI plugins used by the startup layout.
+plugins {
+    tab-bar location="zellij:tab-bar"
+    status-bar location="zellij:status-bar"
+}
+
+// "Tahoe": cool blue theme tuned for the macOS blue Tahoe wallpaper
+// (see themes/tahoe.kdl). No orange, no lime.
+theme "tahoe"
+
+// Start OpenCode on the left and a shell on the right (see layouts/opencode.kdl).
+default_layout "opencode"
+
+// macOS: pipe zellij selections straight to the system clipboard.
+copy_command "pbcopy"
+
+// Bigger scrollback so there's plenty of OpenCode output to review.
+scroll_buffer_size 20000
+
+default_mode "normal"
